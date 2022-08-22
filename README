@@ -1,0 +1,34 @@
+-------Implementation-------
+
+The seqnum are actually set in non-modulo forms, for example the 32th packet has seqnum 32 in
+program. However, in logs they are recorded in modulo form, for example the 32th packet is recorded
+with seqnum 32 % 32 = 0.
+
+Set DEBUG = 1 in sender.py and receiver.py to print debug messages
+
+
+-------How to run--------
+
+Run emulator first:
+./nEmulator.sh <emu receive port forward> <receiver address> <receiver's receive port> <emu receive port backward> <sender address> <sender's receive port> <max delay in ms> <discard prob> <verbose mode>
+
+Then run receiver:
+./receiver.sh <emulator hostname> <emu receive port backward> <receiver's receive port> <name of file write to>
+
+Last run sender:
+./sender.sh <emulator hostname> <emu receive port forward> <sender's receive port> <timeout in ms> <input file>
+
+
+-------Testing--------
+
+Tested in linux.student.cs environment
+Sample commands:
+
+On ubuntu2004-008:
+./nEmulator.sh 18028 ubuntu2004-002 48214 16244 ubuntu2004-012 40608 100 0.3 1
+
+On ubuntu2004-002:
+./receiver.sh ubuntu2004-008 16244 48214 output.txt
+
+On ubuntu2004-012:
+./sender.sh ubuntu2004-008 18028 40608 80 input.txt
