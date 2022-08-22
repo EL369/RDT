@@ -9,6 +9,8 @@ Set DEBUG = 1 in sender.py and receiver.py to print debug messages
 
 -------How to run--------
 
+findUnusedPorts returns 5 ports that are free of use
+
 Run emulator first:
 ./emulator.sh <emu receive port forward> <receiver address> <receiver's receive port> <emu receive port backward> <sender address> <sender's receive port> <max delay in ms> <discard prob> <verbose mode>
 
